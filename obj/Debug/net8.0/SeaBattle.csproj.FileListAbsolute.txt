@@ -1,0 +1,14 @@
+C:\Users\User\RiderProjects\SeaBattle\bin\Debug\net8.0\SeaBattle.exe
+C:\Users\User\RiderProjects\SeaBattle\bin\Debug\net8.0\SeaBattle.deps.json
+C:\Users\User\RiderProjects\SeaBattle\bin\Debug\net8.0\SeaBattle.runtimeconfig.json
+C:\Users\User\RiderProjects\SeaBattle\bin\Debug\net8.0\SeaBattle.dll
+C:\Users\User\RiderProjects\SeaBattle\bin\Debug\net8.0\SeaBattle.pdb
+C:\Users\User\RiderProjects\SeaBattle\obj\Debug\net8.0\SeaBattle.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\RiderProjects\SeaBattle\obj\Debug\net8.0\SeaBattle.AssemblyInfoInputs.cache
+C:\Users\User\RiderProjects\SeaBattle\obj\Debug\net8.0\SeaBattle.AssemblyInfo.cs
+C:\Users\User\RiderProjects\SeaBattle\obj\Debug\net8.0\SeaBattle.csproj.CoreCompileInputs.cache
+C:\Users\User\RiderProjects\SeaBattle\obj\Debug\net8.0\SeaBattle.dll
+C:\Users\User\RiderProjects\SeaBattle\obj\Debug\net8.0\refint\SeaBattle.dll
+C:\Users\User\RiderProjects\SeaBattle\obj\Debug\net8.0\SeaBattle.pdb
+C:\Users\User\RiderProjects\SeaBattle\obj\Debug\net8.0\SeaBattle.genruntimeconfig.cache
+C:\Users\User\RiderProjects\SeaBattle\obj\Debug\net8.0\ref\SeaBattle.dll
