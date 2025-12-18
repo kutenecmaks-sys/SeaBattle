@@ -170,20 +170,32 @@ namespace SeaBattle.Services
 
     public abstract class Player
     {
+        protected static Random _rnd = new Random();
+
         public string Name { get; protected set; }
         public CellState[,] Board { get; protected set; } = new CellState[10, 10];
 
         public Player(string name) { Name = name; PlaceShipsStandard(); }
         public abstract Point MakeMove();
         
+        // Перевірка, щоб не стріляти двічі в одну точку
         public bool IsCellAlreadyShot(Point p) => 
             (p.X < 0 || p.X > 9 || p.Y < 0 || p.Y > 9) || Board[p.X, p.Y] == CellState.Hit || Board[p.X, p.Y] == CellState.Miss;
 
+        // Обробка пострілу
         public bool ReceiveShot(Point p)
         {
-            if (Board[p.X, p.Y] == CellState.Ship) { Board[p.X, p.Y] = CellState.Hit; return true; }
-            if (Board[p.X, p.Y] == CellState.Empty) { Board[p.X, p.Y] = CellState.Miss; return false; }
-            return false;
+            if (Board[p.X, p.Y] == CellState.Ship) 
+            { 
+                Board[p.X, p.Y] = CellState.Hit; 
+                return true; 
+            }
+            if (Board[p.X, p.Y] == CellState.Empty) 
+            { 
+                Board[p.X, p.Y] = CellState.Miss; 
+                return false; 
+            }
+            return false; // Якщо вже стріляли
         }
 
         public bool HasShipsLeft()
@@ -195,12 +207,14 @@ namespace SeaBattle.Services
         private void PlaceShipsStandard()
         {
             int[] ships = { 4, 3, 3, 2, 2, 2, 1, 1, 1, 1 };
-            Random rnd = new Random();
+            
+            // Використовуємо спільний _rnd
             foreach (var size in ships) {
                 bool placed = false;
                 while (!placed) {
-                    int x = rnd.Next(0, 10), y = rnd.Next(0, 10);
-                    bool v = rnd.Next(0, 2) == 0;
+                    int x = _rnd.Next(0, 10);
+                    int y = _rnd.Next(0, 10);
+                    bool v = _rnd.Next(0, 2) == 0; 
                     if (CanPlace(x, y, size, v)) { Place(x, y, size, v); placed = true; }
                 }
             }
@@ -214,17 +228,22 @@ namespace SeaBattle.Services
             for (int i = sx; i <= ex; i++) for (int j = sy; j <= ey; j++) if (Board[i, j] != CellState.Empty) return false;
             return true;
         }
+
         private void Place(int x, int y, int size, bool v) {
             for (int k = 0; k < size; k++) if (v) Board[x, y + k] = CellState.Ship; else Board[x + k, y] = CellState.Ship;
         }
     }
 
+    // Клас Бота
     public class BotPlayer : Player 
     { 
         public BotPlayer() : base("Bot") { } 
-        public override Point MakeMove() => new Point(new Random().Next(0, 10), new Random().Next(0, 10)); 
+        
+        // Бот теж використовує спільний генератор для стрільби
+        public override Point MakeMove() => new Point(_rnd.Next(0, 10), _rnd.Next(0, 10)); 
     }
     
+    // Клас Людини
     public class HumanPlayer : Player 
     { 
         private Func<Point> _in; 
